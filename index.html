@@ -28,34 +28,48 @@
     html {
       scroll-behavior: smooth;
       background-color: #000;
+      overflow-x: hidden;
+      width: 100%;
+      height: 100%;
     }
 
     body {
       width: 100%;
-      min-height: 100vh;
+      min-height: 100%;
       background-color: #000;
       color: var(--text-white);
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       overflow-x: hidden;
+      position: relative;
       line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      touch-action: pan-y;
     }
 
     /* Fixed full-screen canvas background for scroll animation */
     #canvas-container {
       position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
       overflow: hidden;
       z-index: 0;
       pointer-events: none;
       background-color: #000;
+      transform: translate3d(0, 0, 0);
+      -webkit-transform: translate3d(0, 0, 0);
     }
 
     canvas {
       display: block;
-      width: 100vw;
-      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     /* Content wrapper positioned directly on top of scroll animation */
@@ -236,8 +250,8 @@
       content: '';
       position: absolute;
       top: 5rem;
-      left: -2%;
-      width: 520px;
+      left: 0;
+      width: min(520px, 90vw);
       height: 420px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(255, 65, 20, 0.17) 0%, rgba(255, 110, 35, 0.05) 50%, transparent 70%);
@@ -899,8 +913,8 @@
       content: '';
       position: absolute;
       top: 1rem;
-      left: -6%;
-      width: 580px;
+      left: 0;
+      width: min(580px, 95vw);
       height: 480px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(255, 70, 20, 0.20) 0%, rgba(255, 115, 35, 0.07) 48%, transparent 70%);
@@ -2031,12 +2045,13 @@
 
     function updateCanvasSize() {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const w = window.innerWidth;
+      // Use documentElement client width/height to avoid mobile scrollbar / address bar jitter
+      const w = document.documentElement.clientWidth || window.innerWidth;
       const h = window.innerHeight;
 
-      if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
-        canvas.width = w * dpr;
-        canvas.height = h * dpr;
+      if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) {
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
       }
 
       ctx.imageSmoothingEnabled = true;
@@ -2056,8 +2071,8 @@
       const iw = img.naturalWidth;
       const ih = img.naturalHeight;
 
-      // Cover aspect ratio
-      const scale = Math.max(cw / iw, ch / ih);
+      // Cover aspect ratio with slight 2% bleed to eliminate edge rounding/black gaps on mobile
+      const scale = Math.max(cw / iw, ch / ih) * 1.02;
       const nw = iw * scale;
       const nh = ih * scale;
       const ox = (cw - nw) / 2;
@@ -2068,13 +2083,16 @@
     }
 
     function calculateTargetIndex() {
-      const scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
-      const maxScroll = Math.max(
+      const scrollTop = Math.max(0, window.pageYOffset || document.documentElement.scrollTop || 0);
+      const docHeight = Math.max(
+        document.body.scrollHeight,
         document.documentElement.scrollHeight,
-        document.body.scrollHeight
-      ) - window.innerHeight;
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight
+      );
+      const winHeight = window.innerHeight || document.documentElement.clientHeight;
+      const maxScroll = Math.max(1, docHeight - winHeight);
 
-      if (maxScroll <= 0) return 1;
       const progress = Math.min(Math.max(scrollTop / maxScroll, 0), 1);
       return 1 + progress * (frameCount - 1);
     }
