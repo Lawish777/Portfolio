@@ -760,8 +760,118 @@
       color: var(--text-dim);
     }
 
+    /* Mobile Hamburger Menu */
+    .mobile-menu-btn {
+      display: none;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      z-index: 110;
+    }
+
+    .mobile-menu-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #fff;
+    }
+
+    .mobile-menu-btn svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Mobile Drawer */
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 82%;
+      max-width: 340px;
+      height: 100vh;
+      background: rgba(12, 14, 20, 0.96);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      z-index: 105;
+      padding: 6rem 2rem 3rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: -15px 0 45px rgba(0, 0, 0, 0.8);
+    }
+
+    .mobile-drawer.open {
+      right: 0;
+    }
+
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 102;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .drawer-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .mobile-nav-links a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      font-size: 1.25rem;
+      font-weight: 600;
+      display: block;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .mobile-nav-links a:hover,
+    .mobile-nav-links a.active {
+      color: var(--accent-orange);
+      transform: translateX(6px);
+    }
+
+    .mobile-drawer-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .mobile-drawer-socials {
+      display: flex;
+      gap: 1rem;
+    }
+
     /* RESPONSIVE */
     @media (max-width: 1024px) {
+      .container {
+        padding: 0 1.8rem;
+      }
       .projects-masonry-grid {
         grid-template-columns: 1fr;
       }
@@ -778,8 +888,37 @@
     }
 
     @media (max-width: 768px) {
+      .container {
+        padding: 0 1.25rem;
+      }
+      header {
+        padding: 1.2rem 0;
+      }
       .nav-links {
         display: none;
+      }
+      .mobile-menu-btn {
+        display: flex;
+      }
+      .nav-actions .social-icon-btn {
+        display: none;
+      }
+      .nav-btn {
+        padding: 0.45rem 0.55rem 0.45rem 1.1rem;
+        font-size: 0.85rem;
+      }
+      .projects-hero {
+        padding-top: 7.5rem;
+        padding-bottom: 3rem;
+      }
+      .projects-main-title {
+        font-size: clamp(2.3rem, 8vw, 3.2rem);
+      }
+      .filters-container {
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 0.5rem;
+        margin-bottom: 2.5rem;
       }
       .approach-grid {
         grid-template-columns: 1fr;
@@ -787,10 +926,20 @@
       .footer-grid {
         flex-direction: column;
         align-items: flex-start;
+        gap: 1.5rem;
       }
       .footer-nav {
         flex-wrap: wrap;
         gap: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .brand-logo {
+        font-size: 1.2rem;
+      }
+      .stats-banner {
+        padding: 1.5rem;
       }
     }
   </style>
@@ -802,6 +951,36 @@
   <div class="ambient-glow-point glow-point-2"></div>
   <div class="ambient-glow-point glow-point-3"></div>
   <div class="ambient-glow-point glow-point-4"></div>
+
+  <!-- Mobile Drawer Overlay -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="toggleMobileMenu()"></div>
+
+  <!-- Mobile Navigation Drawer -->
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <ul class="mobile-nav-links">
+      <li><a href="index.html#home" onclick="toggleMobileMenu()">Home</a></li>
+      <li><a href="index.html#about" onclick="toggleMobileMenu()">About</a></li>
+      <li><a href="index.html#workflow" onclick="toggleMobileMenu()">Workflow</a></li>
+      <li><a href="index.html#skills" onclick="toggleMobileMenu()">Skills</a></li>
+      <li><a href="projects.html" class="active" onclick="toggleMobileMenu()">Projects</a></li>
+      <li><a href="inbox.html" onclick="toggleMobileMenu()">Inbox</a></li>
+      <li><a href="index.html#contact" onclick="toggleMobileMenu()">Contact</a></li>
+    </ul>
+    <div class="mobile-drawer-footer">
+      <div class="mobile-drawer-socials">
+        <a href="https://github.com/Lawish777" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GitHub Profile">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/lawish-kumar-791391186" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn Profile">
+          <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        </a>
+      </div>
+      <a href="index.html#contact" class="nav-btn" onclick="toggleMobileMenu()" style="width: 100%; justify-content: center;">
+        <span>Get in touch</span>
+        <span class="arrow-icon">→</span>
+      </a>
+    </div>
+  </aside>
 
   <!-- NAVIGATION HEADER -->
   <header>
@@ -830,6 +1009,9 @@
           <span>Get in touch</span>
           <span class="arrow-icon">→</span>
         </a>
+        <button class="mobile-menu-btn" id="mobileMenuToggle" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">
+          <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
       </div>
     </div>
   </header>
@@ -1226,6 +1408,21 @@
   </footer>
 
   <script>
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobileDrawer');
+      const overlay = document.getElementById('drawerOverlay');
+      const isOpen = drawer.classList.contains('open');
+      if (isOpen) {
+        drawer.classList.remove('open');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      } else {
+        drawer.classList.add('open');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
     function filterProjects(category, btn) {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
