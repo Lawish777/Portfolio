@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects &amp; Repositories — Lawish Kumar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --accent-orange: #FF5A1F;
+      --accent-blue: #3D7EFF;
+      --text-white: #FFFFFF;
+      --text-muted: rgba(255, 255, 255, 0.72);
+      --text-dim: rgba(255, 255, 255, 0.45);
+      --border-subtle: rgba(255, 255, 255, 0.14);
+      --border-hover: rgba(255, 255, 255, 0.4);
+      --card-bg: rgba(20, 24, 36, 0.45);
+      --card-bg-hover: rgba(26, 32, 48, 0.65);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Dark relevant shade background with low-opacity orange-red ambient gradients */
+    body {
+      width: 100%;
+      min-height: 100vh;
+      background-color: #0A0C13;
+      background-image: 
+        radial-gradient(circle at 14% 10%, rgba(255, 60, 20, 0.14) 0%, transparent 42%),
+        radial-gradient(circle at 86% 38%, rgba(255, 90, 31, 0.10) 0%, transparent 45%),
+        radial-gradient(circle at 20% 72%, rgba(240, 50, 15, 0.11) 0%, transparent 48%),
+        radial-gradient(circle at 80% 90%, rgba(255, 70, 25, 0.09) 0%, transparent 40%),
+        linear-gradient(180deg, #090B11 0%, #0D101A 40%, #0A0C14 100%);
+      background-attachment: fixed;
+      color: var(--text-white);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow-x: hidden;
+      line-height: 1.5;
+      position: relative;
+    }
+
+    /* Ambient low-opacity orange-red lighting blooms at key points */
+    .ambient-glow-point {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+      z-index: 0;
+      mix-blend-mode: screen;
+    }
+
+    .glow-point-1 {
+      top: 4rem;
+      left: 5%;
+      width: 520px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(255, 65, 20, 0.18) 0%, rgba(255, 110, 40, 0.08) 45%, transparent 70%);
+    }
+
+    .glow-point-2 {
+      top: 55rem;
+      right: 2%;
+      width: 580px;
+      height: 480px;
+      background: radial-gradient(circle, rgba(255, 50, 15, 0.13) 0%, rgba(255, 90, 30, 0.05) 50%, transparent 70%);
+    }
+
+    .glow-point-3 {
+      top: 130rem;
+      left: 0%;
+      width: 540px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(240, 60, 20, 0.14) 0%, rgba(255, 100, 35, 0.06) 50%, transparent 70%);
+    }
+
+    .glow-point-4 {
+      top: 185rem;
+      right: 8%;
+      width: 500px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(255, 70, 20, 0.16) 0%, rgba(255, 110, 45, 0.06) 45%, transparent 70%);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+    }
+
+    /* Pill Badge */
+    .section-pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.35rem 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      margin-bottom: 1.5rem;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(8px);
+    }
+
+    .section-pill-badge .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-orange);
+      box-shadow: 0 0 8px var(--accent-orange);
+    }
+
+    /* NAVIGATION */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1.8rem 0;
+      background: rgba(10, 12, 19, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .brand-logo .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-orange);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: #fff;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .social-icon-btn {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      background: transparent;
+    }
+
+    .social-icon-btn:hover {
+      border-color: #fff;
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .social-icon-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      background: #FFFFFF;
+      color: #0E0E10;
+      padding: 0.55rem 0.65rem 0.55rem 1.3rem;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.25);
+    }
+
+    .nav-btn .arrow-icon {
+      width: 26px;
+      height: 26px;
+      background: var(--accent-orange);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+    }
+
+    /* ========================================================
+       SECTION 1: HERO
+       ======================================================== */
+    .projects-hero {
+      padding-top: 11rem;
+      padding-bottom: 5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-header-box {
+      max-width: 920px;
+    }
+
+    .projects-main-title {
+      font-size: clamp(3.2rem, 6.8vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+      color: #FFFFFF;
+      margin-bottom: 1.8rem;
+    }
+
+    .projects-main-title em {
+      font-style: italic;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .projects-main-subtext {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      max-width: 780px;
+      margin-bottom: 3rem;
+    }
+
+    .filter-pills-row {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.55rem 1.25rem;
+      border: 1px solid var(--border-subtle);
+      border-radius: 9999px;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .filter-btn:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+      color: #fff;
+    }
+
+    .filter-btn.active {
+      background: #FFFFFF;
+      border-color: #FFFFFF;
+      color: #0A0C13;
+    }
+
+    /* ========================================================
+       SECTION 2: ALL PROJECTS REPOSITORIES GRID
+       ======================================================== */
+    .showcase-section {
+      padding: 7rem 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-headline-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 4rem;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+    }
+
+    .section-count {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+
+    .projects-masonry-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+    }
+
+    .project-item-card {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border-subtle);
+      border-radius: 28px;
+      overflow: hidden;
+      background: var(--card-bg);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+    }
+
+    .project-item-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--border-hover);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+      background: var(--card-bg-hover);
+    }
+
+    .card-media-wrap {
+      width: 100%;
+      height: 320px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card-media-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(80%) contrast(1.15) brightness(0.95);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+    }
+
+    .project-item-card:hover .card-media-wrap img {
+      transform: scale(1.05);
+      filter: grayscale(20%) contrast(1.12) brightness(1.02);
+    }
+
+    .card-tag-badge {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: rgba(10, 12, 19, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 0.95rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 0.04em;
+    }
+
+    .card-details-box {
+      padding: 2.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      flex: 1;
+    }
+
+    .card-meta-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--accent-orange);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .card-year {
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+
+    .card-project-title {
+      font-size: 1.55rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      line-height: 1.25;
+    }
+
+    .card-project-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .card-tech-badges-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.25rem;
+    }
+
+    .card-tech-pill {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+    }
+
+    .card-footer-action {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 1.4rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .action-links-group {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .view-case-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      text-decoration: none;
+      transition: gap 0.2s ease, color 0.2s ease;
+    }
+
+    .view-case-link:hover {
+      color: var(--accent-orange);
+      gap: 0.75rem;
+    }
+
+    .live-demo-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #34D399;
+      text-decoration: none;
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      transition: all 0.2s ease;
+    }
+
+    .live-demo-link:hover {
+      background: rgba(52, 211, 153, 0.15);
+      border-color: #34D399;
+    }
+
+    /* ========================================================
+       SECTION 3: ENGINEERING METHODOLOGY
+       ======================================================== */
+    .approach-section {
+      padding: 7rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      z-index: 2;
+    }
+
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 4.5rem;
+    }
+
+    .approach-card {
+      border: 1px solid var(--border-subtle);
+      border-radius: 24px;
+      padding: 2.2rem 1.8rem;
+      background: var(--card-bg);
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .approach-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      background: var(--card-bg-hover);
+    }
+
+    .approach-num {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent-orange);
+      letter-spacing: -0.03em;
+    }
+
+    .approach-card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+    }
+
+    .approach-card-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ========================================================
+       SECTION 4: TECHNICAL IMPACT & CREDENTIALS
+       ======================================================== */
+    .impact-section {
+      padding: 8rem 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .stats-banner {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      padding-bottom: 6rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stat-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .stat-number {
+      font-size: clamp(3.2rem, 5.5vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: #FFFFFF;
+    }
+
+    .stat-number span {
+      color: var(--accent-orange);
+    }
+
+    .stat-label {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .stat-subtext {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    .quote-cta-wrapper {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 6rem;
+    }
+
+    .quote-box {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .client-quote-text {
+      font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+      font-weight: 600;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+    }
+
+    .client-author-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .author-name {
+      font-weight: 700;
+      color: #fff;
+      font-size: 1.05rem;
+    }
+
+    .author-role {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+    }
+
+    .cta-lead-card {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 28px;
+      padding: 3rem 2.5rem;
+      background: var(--card-bg);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .cta-lead-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #FFFFFF;
+    }
+
+    .cta-lead-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .cta-action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: var(--accent-orange);
+      color: #FFFFFF;
+      padding: 0.8rem 1rem 0.8rem 1.8rem;
+      border-radius: 9999px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 6px 24px rgba(255, 90, 31, 0.4);
+    }
+
+    .cta-action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(255, 90, 31, 0.65);
+    }
+
+    .cta-action-btn .btn-arrow-circle {
+      width: 32px;
+      height: 32px;
+      background: #FFFFFF;
+      color: var(--accent-orange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    /* ========================================================
+       FOOTER
+       ======================================================== */
+    footer {
+      padding: 5rem 0 4rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(9, 11, 17, 0.85);
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .footer-nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-nav a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-nav a:hover {
+      color: #fff;
+    }
+
+    .footer-copy {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .projects-masonry-grid {
+        grid-template-columns: 1fr;
+      }
+      .approach-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .quote-cta-wrapper {
+        grid-template-columns: 1fr;
+      }
+      .stats-banner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .approach-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .footer-nav {
+        flex-wrap: wrap;
+        gap: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Low-Opacity Orange-Red Lighting Blooms at Strategic Points -->
+  <div class="ambient-glow-point glow-point-1"></div>
+  <div class="ambient-glow-point glow-point-2"></div>
+  <div class="ambient-glow-point glow-point-3"></div>
+  <div class="ambient-glow-point glow-point-4"></div>
+
+  <!-- NAVIGATION HEADER -->
+  <header>
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-logo">
+        <span>Lawish Kumar</span>
+        <span class="dot"></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#workflow">Workflow</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="projects.html" class="active">Projects</a></li>
+        <li><a href="inbox.html">Inbox</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="https://github.com/Lawish777" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GitHub Profile">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/lawish-kumar-791391186" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn Profile">
+          <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        </a>
+        <a href="index.html#contact" class="nav-btn">
+          <span>Get in touch</span>
+          <span class="arrow-icon">→</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========================================================
+         SECTION 1: HERO
+         ======================================================== -->
+    <section class="projects-hero">
+      <div class="container">
+        
+        <div class="section-pill-badge">
+          <span class="dot"></span>
+          <span>Verified Repositories &amp; Apps</span>
+        </div>
+
+        <div class="hero-header-box">
+          <h1 class="projects-main-title">
+            Curated Projects &amp;<br/><em>Technical Repositories</em>
+          </h1>
+          <p class="projects-main-subtext">
+            Explore verified open-source software, full-stack applications, machine learning systems, and computer vision pipelines built with clean code and modern frameworks.
+          </p>
+
+          <!-- Category Filter Controls -->
+          <div class="filter-pills-row">
+            <button class="filter-btn active" onclick="filterProjects('all', this)">All Projects (7)</button>
+            <button class="filter-btn" onclick="filterProjects('web', this)">Full-Stack &amp; Web</button>
+            <button class="filter-btn" onclick="filterProjects('ai', this)">AI &amp; Machine Learning</button>
+            <button class="filter-btn" onclick="filterProjects('cv', this)">Computer Vision &amp; Desktop</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 2: ALL PROJECTS REPOSITORIES GRID
+         ======================================================== -->
+    <section class="showcase-section">
+      <div class="container">
+        
+        <div class="section-headline-group">
+          <div>
+            <span class="section-pill-badge" style="margin-bottom: 0.8rem;">
+              <span class="dot" style="background: var(--accent-blue); box-shadow: 0 0 8px var(--accent-blue);"></span>
+              <span>Open Source</span>
+            </span>
+            <h2 class="section-title">Featured GitHub Projects</h2>
+          </div>
+          <div class="section-count">Showing 7 Verified Works</div>
+        </div>
+
+        <div class="projects-masonry-grid" id="projectsContainer">
+          
+          <!-- PROJECT 1: Anime Odyssey Hub -->
+          <article class="project-item-card" data-category="web ai">
+            <div class="card-media-wrap">
+              <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1200&q=85" alt="Anime Odyssey Hub" loading="lazy" />
+              <span class="card-tag-badge">AI Recommendation</span>
+            </div>
+            <div class="card-details-box">
+              <div class="card-meta-top">
+                <span>Personal Project</span>
+                <span class="card-year">Live App</span>
+              </div>
+              <h3 class="card-project-title">Anime Odyssey Hub</h3>
+              <p class="card-project-desc">Intelligent recommendation platform powered by TF-IDF vectorization and Nearest Neighbors algorithms. Features speech-to-text voice search, real-time metadata and trailers via Jikan API, session-based favorites, and customizable watchlists.</p>
+              <div class="card-tech-badges-row">
+                <span class="card-tech-pill">Python</span>
+                <span class="card-tech-pill">Streamlit</span>
+                <span class="card-tech-pill">Scikit-learn</span>
+                <span class="card-tech-pill">Jikan API</span>
+                <span class="card-tech-pill">SpeechRecognition</span>
+              </div>
+              <div class="card-footer-action">
+                <div class="action-links-group">
+                  <a href="https://github.com/Lawish777/Anime-Odyssey-Hub" target="_blank" rel="noopener noreferrer" class="view-case-link">GitHub Source &rarr;</a>
+                  <a href="https://anime-odyssey-app-7mejnf8ewg2sbgnkpagwn6.streamlit.app/" target="_blank" rel="noopener noreferrer" class="live-demo-link">&#9658; Live Demo</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 2: Text Emotion Detector -->
+          <article class="project-item-card" data-category="web ai">
+            <div class="card-media-wrap">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=85" alt="Text Emotion Detector" loading="lazy" />
+              <span class="card-tag-badge">NLP &amp; Classification</span>
+            </div>
+            <div class="card-details-box">
+              <div class="card-meta-top">
+                <span>NLP Engine</span>
+                <span class="card-year">Live App</span>
+              </div>
+              <h3 class="card-project-title">Text Emotion Detector</h3>
+              <p class="card-project-desc">Interactive NLP web application that classifies emotions in real-time user text. Delivers emotion prediction breakdown charts using Altair visualizations, confidence ratings, and emoji feedback.</p>
+              <div class="card-tech-badges-row">
+                <span class="card-tech-pill">Python</span>
+                <span class="card-tech-pill">Streamlit</span>
+                <span class="card-tech-pill">NLP</span>
+                <span class="card-tech-pill">Altair</span>
+                <span class="card-tech-pill">Scikit-learn</span>
+              </div>
+              <div class="card-footer-action">
+                <div class="action-links-group">
+                  <a href="https://github.com/Lawish777/Text-Emotion-Detector" target="_blank" rel="noopener noreferrer" class="view-case-link">GitHub Source &rarr;</a>
+                  <a href="https://text-emotion-detector-5bdp9ngrmgrn62orbyanmj.streamlit.app/" target="_blank" rel="noopener noreferrer" class="live-demo-link">&#9658; Live Demo</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 3: Facial Emotion Detection with XAI -->
+          <article class="project-item-card" data-category="ai cv">
+            <div class="card-media-wrap">
+              <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=85" alt="Facial Emotion Detection XAI" loading="lazy" />
+              <span class="card-tag-badge">Explainable AI</span>
+            </div>
+            <div class="card-details-box">
+              <div class="card-meta-top">
+                <span>Computer Vision</span>
+                <span class="card-year">Repository</span>
+              </div>
+              <h3 class="card-project-title">Facial Emotion Detection using Explainable AI</h3>
+              <p class="card-project-desc">Real-time webcam facial emotion recognition pipeline using OpenCV and trained ML models. Integrated with Explainable AI (XAI) techniques to provide interpretable visual justifications for classifier outputs.</p>
+              <div class="card-tech-badges-row">
+                <span class="card-tech-pill">Python</span>
+                <span class="card-tech-pill">OpenCV</span>
+                <span class="card-tech-pill">XAI</span>
+                <span class="card-tech-pill">Machine Learning</span>
+                <span class="card-tech-pill">Jupyter</span>
+              </div>
+              <div class="card-footer-action">
+                <div class="action-links-group">
+                  <a href="https://github.com/Lawish777/Facial-Emotion-Detection-Using-XAI" target="_blank" rel="noopener noreferrer" class="view-case-link">GitHub Source &rarr;</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 4: Real-Time Face Swap -->
+          <article class="project-item-card" data-category="cv">
+            <div class="card-media-wrap">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=85" alt="Face Swap Application" loading="lazy" />
+              <span class="card-tag-badge">Vision &amp; Landmarks</span>
+            </div>
+            <div class="card-details-box">
+              <div class="card-meta-top">
+                <span>MediaPipe &bull; OpenCV</span>
+                <span class="card-year">Repository</span>
+              </div>
+              <h3 class="card-project-title">Real-Time Face Swap Application</h3>
+              <p class="card-project-desc">Live face-swapping pipeline utilizing MediaPipe 468-point facial mesh tracking, Delaunay triangulation, affine matrix transformations, and seamless Poisson image cloning for natural blending in real-time camera streams.</p>
+              <div class="card-tech-badges-row">
+                <span class="card-tech-pill">Python</span>
+                <span class="card-tech-pill">OpenCV</span>
+                <span class="card-tech-pill">MediaPipe</span>
+                <span class="card-tech-pill">NumPy</span>
+              </div>
+              <div class="card-footer-action">
+                <div class="action-links-group">
+                  <a href="https://github.com/Lawish777/Face-Swap" target="_blank" rel="noopener noreferrer" class="view-case-link">GitHub Source &rarr;</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 5: Desktop Audiobook Generator -->
+          <article class="project-item-card" data-category="cv">
+            <div class="card-media-wrap">
+              <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=85" alt="Audiobook Generator" loading="lazy" />
+              <span class="card-tag-badge">Desktop Tool</span>
+            </div>
+            <div class="card-details-box">
+              <div class="card-meta-top">
+                <span>Text-To-Speech</span>
+                <span class="card-year">Repository</span>
+              </div>
+              <h3 class="card-project-title">Desktop Audiobook Generator</h3>
+              <p class="card-project-desc">Desktop offline audiobook converter that parses text from uploaded PDF files and synthesizes natural audio output using pyttsx3, packaged with an accessible Tkinter graphical user interface.</p>
+              <div class="card-tech-badges-row">
+                <span class="card-tech-pill">Python</span>
+                <span class="card-tech-pill">pyttsx3</span>
+                <span class="card-tech-pill">Tkinter</span>
+                <span class="card-tech-pill">PyPDF2</span>
+              </div>
+              <div class="card-footer-action">
+                <div class="action-links-group">
+                  <a href="https://github.com/Lawish777/Audiobook" target="_blank" rel="noopener noreferrer" class="view-case-link">GitHub Source &rarr;</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 6: Student Performance Analytics -->
+          <article class="project-item-card" data-category="web ai">
+            <div class="card-media-wrap">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85" alt="Student Performance Analytics" loading="lazy" />
+              <span class="card-tag-badge">Data Analytics</span>
+            </div>
+            <div class="card-details-box">
+              <div class="card-meta-top">
+                <span>Analytics Suite</span>
+                <span class="card-year">Repository</span>
+              </div>
+              <h3 class="card-project-title">Student Performance Analytics System</h3>
+              <p class="card-project-desc">Interactive academic dashboard developed for statistical performance tracking, student grade distribution analysis, KPI filtering, and automated insight visualization using NumPy, Pandas, and Streamlit.</p>
+              <div class="card-tech-badges-row">
+                <span class="card-tech-pill">Python</span>
+                <span class="card-tech-pill">Pandas</span>
+                <span class="card-tech-pill">NumPy</span>
+                <span class="card-tech-pill">Streamlit</span>
+              </div>
+              <div class="card-footer-action">
+                <div class="action-links-group">
+                  <a href="https://github.com/Lawish777/student-performance-analytics" target="_blank" rel="noopener noreferrer" class="view-case-link">GitHub Source &rarr;</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 7: Pizzeria MEAN Stack -->
+          <article class="project-item-card" data-category="web">
+            <div class="card-media-wrap">
+              <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=85" alt="Pizzeria MEAN Stack" loading="lazy" />
+              <span class="card-tag-badge">Full-Stack MEAN</span>
+            </div>
+            <div class="card-details-box">
+              <div class="card-meta-top">
+                <span>MEAN Stack</span>
+                <span class="card-year">Repository</span>
+              </div>
+              <h3 class="card-project-title">Pizzeria Online Ordering Platform</h3>
+              <p class="card-project-desc">Full-stack web application featuring dynamic menu selection, shopping cart management, order placement, and responsive client interfaces backed by Node.js, Express, and MongoDB.</p>
+              <div class="card-tech-badges-row">
+                <span class="card-tech-pill">TypeScript</span>
+                <span class="card-tech-pill">Angular</span>
+                <span class="card-tech-pill">Node.js</span>
+                <span class="card-tech-pill">MongoDB</span>
+                <span class="card-tech-pill">Express</span>
+              </div>
+              <div class="card-footer-action">
+                <div class="action-links-group">
+                  <a href="https://github.com/Lawish777/Pizzeria" target="_blank" rel="noopener noreferrer" class="view-case-link">GitHub Source &rarr;</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 3: ENGINEERING METHODOLOGY
+         ======================================================== -->
+    <section class="approach-section">
+      <div class="container">
+        
+        <div class="section-pill-badge">
+          <span class="dot"></span>
+          <span>Core Engineering Disciplines</span>
+        </div>
+
+        <h2 class="section-title">How Every Application Is Engineered</h2>
+        <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 680px; margin-top: 1rem;">
+          Applying rigorous software engineering practices to ship clean, responsive, and maintainable software.
+        </p>
+
+        <div class="approach-grid">
+          
+          <div class="approach-card">
+            <span class="approach-num">01</span>
+            <h3 class="approach-card-title">Clean Modular Code</h3>
+            <p class="approach-card-desc">Writing readable, component-driven architectures following SOLID principles across React, Node.js, .NET, and Python codebases.</p>
+          </div>
+
+          <div class="approach-card">
+            <span class="approach-num">02</span>
+            <h3 class="approach-card-title">Responsive UI/UX</h3>
+            <p class="approach-card-desc">Delivering fluid, multi-viewport interfaces with modern CSS, Tailwind, accessible semantics, and seamless micro-interactions.</p>
+          </div>
+
+          <div class="approach-card">
+            <span class="approach-num">03</span>
+            <h3 class="approach-card-title">API &amp; Data Integration</h3>
+            <p class="approach-card-desc">Building resilient RESTful services, integrating third-party APIs like Jikan, and managing persistent data with MongoDB &amp; MySQL.</p>
+          </div>
+
+          <div class="approach-card">
+            <span class="approach-num">04</span>
+            <h3 class="approach-card-title">Intelligent AI Tooling</h3>
+            <p class="approach-card-desc">Leveraging modern AI platforms like Antigravity, Stitch, MediaPipe, and OpenCV to automate and enrich digital user workflows.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SECTION 4: TECHNICAL IMPACT & CREDENTIALS
+         ======================================================== -->
+    <section class="impact-section">
+      <div class="container">
+        
+        <div class="section-pill-badge">
+          <span class="dot"></span>
+          <span>Credentials &amp; Milestones</span>
+        </div>
+
+        <h2 class="section-title">Validated Experience &amp; Technical Foundation</h2>
+
+        <div class="stats-banner" style="margin-top: 3.5rem;">
+          
+          <div class="stat-block">
+            <div class="stat-number">8.09<span>/10</span></div>
+            <div class="stat-label">BCA Academic CGPA</div>
+            <div class="stat-subtext">Graphic Era University &bull; Secured Accenture campus placement</div>
+          </div>
+
+          <div class="stat-block">
+            <div class="stat-number">7<span>+</span></div>
+            <div class="stat-label">Open Source Repositories</div>
+            <div class="stat-subtext">Covering Full-Stack Web, Streamlit, NLP, and Computer Vision</div>
+          </div>
+
+          <div class="stat-block">
+            <div class="stat-number">2025<span>OCI</span></div>
+            <div class="stat-label">Certified Generative AI Pro</div>
+            <div class="stat-subtext">Oracle Cloud Infrastructure Professional &amp; Associate Certified</div>
+          </div>
+
+        </div>
+
+        <div class="quote-cta-wrapper">
+          
+          <div class="quote-box">
+            <blockquote class="client-quote-text">
+              &ldquo;Passionate about turning complex ideas into functional web products with clean front-ends and intelligent systems.&rdquo;
+            </blockquote>
+            <div class="client-author-info">
+              <div>
+                <div class="author-name">Lawish Kumar</div>
+                <div class="author-role">Web Developer &bull; Accenture (Ex Front-End)</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cta-lead-card">
+            <h3 class="cta-lead-title">Interested in collaborating?</h3>
+            <p class="cta-lead-desc">Open for full-time opportunities, engineering collaborations, and modern web application development.</p>
+            <a href="index.html#contact" class="cta-action-btn">
+              <span>Get in Touch</span>
+              <span class="btn-arrow-circle">&rarr;</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================
+       FOOTER
+       ======================================================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="#fff"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <span>Lawish Kumar &bull; Web Developer</span>
+        </div>
+
+        <ul class="footer-nav">
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#workflow">Workflow</a></li>
+          <li><a href="index.html#skills">Skills</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="https://github.com/Lawish777" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/lawish-kumar-791391186" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="mailto:lunaticlavish357@gmail.com">Email</a></li>
+        </ul>
+
+        <div class="footer-copy">
+          &copy; 2026 Lawish Kumar. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function filterProjects(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.project-item-card');
+      cards.forEach(card => {
+        if (category === 'all') {
+          card.style.display = 'flex';
+        } else {
+          const cats = card.getAttribute('data-category') || '';
+          if (cats.includes(category)) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
