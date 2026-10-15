@@ -44,8 +44,10 @@ function saveMessages(messages) {
 
 // Configure Nodemailer transporter if credentials provided
 function getTransporter() {
-  const user = process.env.EMAIL_USER;
-  const pass = process.env.EMAIL_PASS;
+  const user = process.env.EMAIL_USER ? process.env.EMAIL_USER.trim() : null;
+  // Automatically strip spaces from Google App Password (e.g. "abcd efgh ijkl mnop" -> "abcdefghijklmnop")
+  const rawPass = process.env.EMAIL_PASS;
+  const pass = rawPass ? rawPass.replace(/\s+/g, '') : null;
 
   if (!user || !pass) {
     return null;
