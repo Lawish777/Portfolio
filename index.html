@@ -2353,8 +2353,12 @@
     const canvas = document.getElementById('animation-canvas');
     const ctx = canvas.getContext('2d', { alpha: false });
 
+    const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || (window.innerWidth <= 768);
+    
+    // Performance optimization: limit DPR to 1 on mobile to cut fill-rate by 50-75%
+    const dpr = isMobileDevice ? 1 : Math.min(window.devicePixelRatio || 1, 2);
     ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';
+    ctx.imageSmoothingQuality = isMobileDevice ? 'medium' : 'high';
 
     const frames = new Array(frameCount);
     let renderedIndex = -1;
@@ -2365,34 +2369,53 @@
       `Lawish/ezgif-frame-${String(index).padStart(3, '0')}.jpg`;
 
     function updateCanvasSize() {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const activeDpr = isMobileDevice ? 1 : Math.min(window.devicePixelRatio || 1, 2);
       // Use documentElement client width/height to avoid mobile scrollbar / address bar jitter
       const w = document.documentElement.clientWidth || window.innerWidth;
       const h = window.innerHeight;
 
-      if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) {
-        canvas.width = Math.round(w * dpr);
-        canvas.height = Math.round(h * dpr);
+      if (canvas.width !== Math.round(w * activeDpr) || canvas.height !== Math.round(h * activeDpr)) {
+        canvas.width = Math.round(w * activeDpr);
+        canvas.height = Math.round(h * activeDpr);
       }
 
       ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = 'high';
+      ctx.imageSmoothingQuality = isMobileDevice ? 'medium' : 'high';
       renderFrame(Math.round(currentRenderIndex), true);
+    }
+
+    // Find nearest loaded frame to ensure canvas never freezes or sticks if a frame is still loading
+    function getNearestLoadedFrame(targetIdx) {
+      if (frames[targetIdx - 1] && frames[targetIdx - 1].complete && frames[targetIdx - 1].naturalWidth > 0) {
+        return { img: frames[targetIdx - 1], index: targetIdx };
+      }
+      for (let offset = 1; offset < frameCount; offset++) {
+        const prev = targetIdx - offset;
+        if (prev >= 1 && frames[prev - 1] && frames[prev - 1].complete && frames[prev - 1].naturalWidth > 0) {
+          return { img: frames[prev - 1], index: prev };
+        }
+        const next = targetIdx + offset;
+        if (next <= frameCount && frames[next - 1] && frames[next - 1].complete && frames[next - 1].naturalWidth > 0) {
+          return { img: frames[next - 1], index: next };
+        }
+      }
+      return null;
     }
 
     function renderFrame(index, force = false) {
       const safeIndex = Math.min(frameCount, Math.max(1, index));
       if (!force && safeIndex === renderedIndex) return;
 
-      const img = frames[safeIndex - 1];
-      if (!img || !img.complete || img.naturalWidth === 0) return;
+      const result = getNearestLoadedFrame(safeIndex);
+      if (!result) return;
 
+      const img = result.img;
       const cw = canvas.width;
       const ch = canvas.height;
       const iw = img.naturalWidth;
       const ih = img.naturalHeight;
 
-      // Cover aspect ratio with slight 2% bleed to eliminate edge rounding/black gaps on mobile
+      // Cover aspect ratio with slight bleed to eliminate edge rounding/black gaps
       const scale = Math.max(cw / iw, ch / ih) * 1.02;
       const nw = iw * scale;
       const nh = ih * scale;
@@ -2400,7 +2423,7 @@
       const oy = (ch - nh) / 2;
 
       ctx.drawImage(img, ox, oy, nw, nh);
-      renderedIndex = safeIndex;
+      renderedIndex = result.index;
     }
 
     function calculateTargetIndex() {
@@ -2418,35 +2441,36 @@
       return 1 + progress * (frameCount - 1);
     }
 
-    // Preload & decode all 240 frames
+    // Preload & decode frames progressively
     function preloadFrames() {
-      for (let i = 1; i <= frameCount; i++) {
+      // First, load frame 1 immediately for instant paint
+      const firstImg = new Image();
+      firstImg.src = getFramePath(1);
+      const onFirstLoaded = () => {
+        if (renderedIndex === -1) renderFrame(1, true);
+      };
+      if (firstImg.decode) {
+        firstImg.decode().then(onFirstLoaded).catch(onFirstLoaded);
+      } else {
+        firstImg.onload = onFirstLoaded;
+      }
+      frames[0] = firstImg;
+
+      // Progressively load remaining frames
+      for (let i = 2; i <= frameCount; i++) {
         const img = new Image();
         img.src = getFramePath(i);
-
-        if (img.decode) {
-          img.decode().catch(() => {}).then(() => {
-            if (i === 1 && renderedIndex === -1) {
-              renderFrame(1, true);
-            }
-          });
-        } else {
-          img.onload = () => {
-            if (i === 1 && renderedIndex === -1) {
-              renderFrame(1, true);
-            }
-          };
-        }
         frames[i - 1] = img;
       }
     }
 
-    // Smooth inertia lerp loop
+    // Smooth inertia lerp loop with responsive mobile physics
+    const lerpFactor = isMobileDevice ? 0.16 : 0.095;
     function animationLoop() {
       const diff = targetIndex - currentRenderIndex;
 
       if (Math.abs(diff) > 0.0005) {
-        currentRenderIndex += diff * 0.085;
+        currentRenderIndex += diff * lerpFactor;
       } else {
         currentRenderIndex = targetIndex;
       }
@@ -2459,7 +2483,7 @@
       targetIndex = calculateTargetIndex();
     }, { passive: true });
 
-    window.addEventListener('resize', updateCanvasSize);
+    window.addEventListener('resize', updateCanvasSize, { passive: true });
 
     // Initial setup
     preloadFrames();
