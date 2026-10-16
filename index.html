@@ -782,7 +782,7 @@
        ======================================================== */
     .palette-section {
       min-height: 100vh;
-      padding: 9rem 0 7rem 0;
+      padding: 8rem 0 6rem 0;
       position: relative;
     }
 
@@ -792,110 +792,166 @@
       line-height: 1.18;
       letter-spacing: -0.025em;
       color: #FFFFFF;
-      max-width: 860px;
-      margin-bottom: 5rem;
+      max-width: 880px;
+      margin-bottom: 1.2rem;
       text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
     }
 
-    .palette-orbital-stage {
+    .tech-stack-intro {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 720px;
+      line-height: 1.6;
+      margin-bottom: 3.5rem;
+    }
+
+    /* Category Layout */
+    .tech-categories-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2.8rem;
+    }
+
+    .tech-category-block {
+      background: rgba(18, 22, 34, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 2rem 2.2rem;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
       position: relative;
+      overflow: hidden;
+    }
+
+    .tech-category-block::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      min-height: 580px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255, 90, 31, 0.5), rgba(61, 126, 255, 0.5), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .tech-category-block:hover {
+      border-color: rgba(255, 255, 255, 0.28);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+      transform: translateY(-2px);
+    }
+
+    .tech-category-block:hover::before {
+      opacity: 1;
+    }
+
+    .tech-category-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.6rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .category-title-group {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .category-badge-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent-orange);
+      box-shadow: 0 0 10px var(--accent-orange);
+    }
+
+    .category-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.015em;
+    }
+
+    .category-count {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      letter-spacing: 0.04em;
+    }
+
+    /* Grid of Technology Cards */
+    .tech-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .tech-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 16px;
+      padding: 1.15rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 0.75rem;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: default;
+      position: relative;
+      user-select: none;
+    }
+
+    .tech-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 90, 31, 0.55);
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 10px 24px rgba(255, 90, 31, 0.16), 0 6px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .tech-icon-wrap {
+      width: 44px;
+      height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: transform 0.25s ease;
     }
 
-    .orbital-ring-container {
-      position: absolute;
-      width: 420px;
-      height: 420px;
-      pointer-events: none;
+    .tech-card:hover .tech-icon-wrap {
+      transform: scale(1.12);
     }
 
-    .orbital-ring-svg {
-      width: 100%;
-      height: 100%;
+    .tech-icon-wrap img,
+    .tech-icon-wrap svg {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+      display: block;
     }
 
-    .color-card-pos {
-      position: absolute;
-      z-index: 5;
-    }
-
-    .pos-top-right { top: 0; right: 10%; }
-    .pos-top-left { top: 6%; left: 8%; }
-    .pos-bottom-left { bottom: 2%; left: 10%; }
-    .pos-bottom-right { bottom: 0; right: 8%; }
-
-    .color-inspector-card {
-      width: 290px;
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      border-radius: 20px;
-      padding: 1.4rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: default;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    }
-
-    .color-inspector-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(255, 255, 255, 0.5);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
-    }
-
-    .card-top-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .color-name-group {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .swatch-indicator {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .color-name {
-      font-size: 0.95rem;
-      font-weight: 700;
+    .tech-name {
+      font-size: 0.92rem;
+      font-weight: 600;
       color: #FFFFFF;
       letter-spacing: -0.01em;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+      line-height: 1.25;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+      transition: color 0.2s ease;
     }
 
-    .color-description {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
-    }
-
-    .skills-tag-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      padding-top: 0.4rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .skill-micro-badge {
-      font-size: 0.74rem;
-      font-weight: 600;
-      padding: 0.2rem 0.55rem;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.08);
+    .tech-card:hover .tech-name {
       color: #FFFFFF;
     }
 
@@ -1317,23 +1373,12 @@
         flex-direction: column;
         align-items: flex-start;
       }
-      .palette-orbital-stage {
-        flex-direction: column;
-        gap: 2rem;
-        min-height: auto;
+      .tech-category-block {
+        padding: 1.6rem 1.4rem;
       }
-      .color-card-pos {
-        position: static;
-        width: 100%;
-      }
-      .orbital-ring-container {
-        display: none;
-      }
-      .palette-cards-mobile-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-        width: 100%;
+      .tech-cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 0.85rem;
       }
       .step-pill-row {
         margin-left: 0 !important;
@@ -1385,6 +1430,32 @@
         padding: 5rem 0 3.5rem 0;
         min-height: auto;
       }
+      .tech-category-block {
+        padding: 1.4rem 1.1rem;
+        border-radius: 18px;
+      }
+      .category-title {
+        font-size: 1.1rem;
+      }
+      .tech-cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+        gap: 0.75rem;
+      }
+      .tech-card {
+        padding: 0.9rem 0.6rem;
+      }
+      .tech-icon-wrap {
+        width: 36px;
+        height: 36px;
+      }
+      .tech-icon-wrap img,
+      .tech-icon-wrap svg {
+        width: 28px;
+        height: 28px;
+      }
+      .tech-name {
+        font-size: 0.82rem;
+      }
       .brands-heading {
         max-width: 100%;
         text-align: center;
@@ -1401,12 +1472,6 @@
       }
       .projects-grid {
         grid-template-columns: 1fr;
-      }
-      .palette-cards-mobile-grid {
-        grid-template-columns: 1fr;
-      }
-      .color-inspector-card {
-        width: 100%;
       }
       .cta-row {
         flex-direction: column;
@@ -1811,113 +1876,249 @@
         
         <div class="section-pill-badge">
           <span class="dot"></span>
-          <span>Technical Skills</span>
+          <span>Tech Stack &amp; Skills</span>
         </div>
 
         <h2 class="palette-title">
-          Proficient in full-stack engineering, modern front-end frameworks, and intelligent applications.
+          Technologies, frameworks, and developer tools I engineer with.
         </h2>
+        <p class="tech-stack-intro">
+          A structured overview of core programming languages, modern front-end libraries, robust backend runtimes, scalable databases, and intelligent AI tools utilized across production systems.
+        </p>
 
-        <!-- Orbital Ring + Floating Skills Inspector Cards -->
-        <div class="palette-orbital-stage">
+        <div class="tech-categories-container">
           
-          <div class="orbital-ring-container">
-            <svg class="orbital-ring-svg" viewBox="0 0 400 400" fill="none">
-              <circle cx="200" cy="200" r="140" stroke="rgba(255, 255, 255, 0.12)" stroke-width="14" stroke-linecap="round"/>
-              <path d="M 200 60 A 140 140 0 0 1 320 130" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round"/>
-              <circle cx="320" cy="130" r="10" fill="#FFFFFF" stroke="#000" stroke-width="3"/>
-              <path d="M 120 310 A 140 140 0 0 1 200 340" stroke="var(--accent-orange)" stroke-width="14" stroke-linecap="round"/>
-              <circle cx="200" cy="340" r="10" fill="var(--accent-orange)" stroke="#000" stroke-width="3"/>
-              <circle cx="68" cy="160" r="8" fill="#3D7EFF" stroke="rgba(255, 255, 255, 0.4)" stroke-width="2"/>
-              <circle cx="290" cy="300" r="8" fill="#0D0F14" stroke="rgba(255, 255, 255, 0.4)" stroke-width="2"/>
-            </svg>
+          <!-- Category 1: Programming Languages & Technologies -->
+          <div class="tech-category-block">
+            <div class="tech-category-header">
+              <div class="category-title-group">
+                <span class="category-badge-dot"></span>
+                <h3 class="category-title">1. Programming Languages &amp; Technologies</h3>
+              </div>
+              <span class="category-count">7 Technologies</span>
+            </div>
+            <div class="tech-cards-grid">
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/c.svg" alt="C" loading="lazy" />
+                </div>
+                <span class="tech-name">C</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/cplusplus.svg" alt="C++" loading="lazy" />
+                </div>
+                <span class="tech-name">C++</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/java.svg" alt="Java" loading="lazy" />
+                </div>
+                <span class="tech-name">Java</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/javascript.svg" alt="JavaScript" loading="lazy" />
+                </div>
+                <span class="tech-name">JavaScript</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/python.svg" alt="Python" loading="lazy" />
+                </div>
+                <span class="tech-name">Python</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/sql.svg" alt="SQL" loading="lazy" />
+                </div>
+                <span class="tech-name">SQL</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/dotnetcore.svg" alt=".NET" loading="lazy" />
+                </div>
+                <span class="tech-name">.NET</span>
+              </div>
+            </div>
           </div>
 
-          <div class="palette-cards-mobile-grid">
-            
-            <!-- Card 1: Front-End Core -->
-            <div class="color-card-pos pos-top-right">
-              <div class="color-inspector-card">
-                <div class="card-top-row">
-                  <div class="color-name-group">
-                    <span class="swatch-indicator" style="background: #FFFFFF;"></span>
-                    <span class="color-name">Front-End Engineering</span>
-                  </div>
+          <!-- Category 2: Frontend Development -->
+          <div class="tech-category-block">
+            <div class="tech-category-header">
+              <div class="category-title-group">
+                <span class="category-badge-dot" style="background: #3D7EFF; box-shadow: 0 0 10px #3D7EFF;"></span>
+                <h3 class="category-title">2. Frontend Development</h3>
+              </div>
+              <span class="category-count">7 Technologies</span>
+            </div>
+            <div class="tech-cards-grid">
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/html5.svg" alt="HTML5" loading="lazy" />
                 </div>
-                <p class="color-description">Crafting responsive, high-velocity web interfaces and design systems with modern libraries.</p>
-                <div class="skills-tag-list">
-                  <span class="skill-micro-badge">React</span>
-                  <span class="skill-micro-badge">TypeScript</span>
-                  <span class="skill-micro-badge">JavaScript</span>
-                  <span class="skill-micro-badge">HTML5 / CSS3</span>
-                  <span class="skill-micro-badge">Tailwind CSS</span>
-                  <span class="skill-micro-badge">Streamlit</span>
+                <span class="tech-name">HTML5</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/css3.svg" alt="CSS3" loading="lazy" />
                 </div>
+                <span class="tech-name">CSS3</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/angular.svg" alt="Angular" loading="lazy" />
+                </div>
+                <span class="tech-name">Angular</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/react.svg" alt="React" loading="lazy" />
+                </div>
+                <span class="tech-name">React</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/tailwindcss.svg" alt="Tailwind CSS" loading="lazy" />
+                </div>
+                <span class="tech-name">Tailwind CSS</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/bootstrap.svg" alt="Bootstrap" loading="lazy" />
+                </div>
+                <span class="tech-name">Bootstrap</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/typescript.svg" alt="TypeScript" loading="lazy" />
+                </div>
+                <span class="tech-name">TypeScript</span>
               </div>
             </div>
+          </div>
 
-            <!-- Card 2: Back-End & Database -->
-            <div class="color-card-pos pos-top-left">
-              <div class="color-inspector-card">
-                <div class="card-top-row">
-                  <div class="color-name-group">
-                    <span class="swatch-indicator" style="background: var(--accent-orange);"></span>
-                    <span class="color-name">Backend &amp; Databases</span>
-                  </div>
+          <!-- Category 3: Backend Development -->
+          <div class="tech-category-block">
+            <div class="tech-category-header">
+              <div class="category-title-group">
+                <span class="category-badge-dot" style="background: #34D399; box-shadow: 0 0 10px #34D399;"></span>
+                <h3 class="category-title">3. Backend Development</h3>
+              </div>
+              <span class="category-count">3 Technologies</span>
+            </div>
+            <div class="tech-cards-grid">
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/nodejs.svg" alt="Node.js" loading="lazy" />
                 </div>
-                <p class="color-description">Architecting scalable APIs, server-side services, and database management systems.</p>
-                <div class="skills-tag-list">
-                  <span class="skill-micro-badge">Node.js</span>
-                  <span class="skill-micro-badge">.NET</span>
-                  <span class="skill-micro-badge">MongoDB</span>
-                  <span class="skill-micro-badge">MySQL</span>
-                  <span class="skill-micro-badge">REST APIs</span>
-                  <span class="skill-micro-badge">Express</span>
+                <span class="tech-name">Node.js</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/express.svg" alt="Express.js" loading="lazy" />
                 </div>
+                <span class="tech-name">Express.js</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/restapi.svg" alt="REST APIs" loading="lazy" />
+                </div>
+                <span class="tech-name">REST APIs</span>
               </div>
             </div>
+          </div>
 
-            <!-- Card 3: AI & Vision -->
-            <div class="color-card-pos pos-bottom-left">
-              <div class="color-inspector-card">
-                <div class="card-top-row">
-                  <div class="color-name-group">
-                    <span class="swatch-indicator" style="background: var(--accent-blue);"></span>
-                    <span class="color-name">AI &amp; Computer Vision</span>
-                  </div>
+          <!-- Category 4: Databases -->
+          <div class="tech-category-block">
+            <div class="tech-category-header">
+              <div class="category-title-group">
+                <span class="category-badge-dot" style="background: #10B981; box-shadow: 0 0 10px #10B981;"></span>
+                <h3 class="category-title">4. Databases</h3>
+              </div>
+              <span class="category-count">2 Technologies</span>
+            </div>
+            <div class="tech-cards-grid">
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/mongodb.svg" alt="MongoDB" loading="lazy" />
                 </div>
-                <p class="color-description">Building intelligent models, real-time computer vision pipelines, and explainable AI systems.</p>
-                <div class="skills-tag-list">
-                  <span class="skill-micro-badge">Python</span>
-                  <span class="skill-micro-badge">OpenCV</span>
-                  <span class="skill-micro-badge">MediaPipe</span>
-                  <span class="skill-micro-badge">Scikit-learn</span>
-                  <span class="skill-micro-badge">XAI</span>
-                  <span class="skill-micro-badge">Pandas / NumPy</span>
+                <span class="tech-name">MongoDB</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/sqldatabases.svg" alt="SQL Databases" loading="lazy" />
                 </div>
+                <span class="tech-name">SQL databases</span>
               </div>
             </div>
+          </div>
 
-            <!-- Card 4: Tools & Platforms -->
-            <div class="color-card-pos pos-bottom-right">
-              <div class="color-inspector-card">
-                <div class="card-top-row">
-                  <div class="color-name-group">
-                    <span class="swatch-indicator" style="background: #34D399;"></span>
-                    <span class="color-name">Tools &amp; Workflows</span>
-                  </div>
+          <!-- Category 5: Developer Tools & AI -->
+          <div class="tech-category-block">
+            <div class="tech-category-header">
+              <div class="category-title-group">
+                <span class="category-badge-dot" style="background: #A855F7; box-shadow: 0 0 10px #A855F7;"></span>
+                <h3 class="category-title">5. Developer Tools &amp; AI</h3>
+              </div>
+              <span class="category-count">9 Technologies</span>
+            </div>
+            <div class="tech-cards-grid">
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/git.svg" alt="Git" loading="lazy" />
                 </div>
-                <p class="color-description">Proficient with modern developer tooling, version control, and automation suites.</p>
-                <div class="skills-tag-list">
-                  <span class="skill-micro-badge">Antigravity</span>
-                  <span class="skill-micro-badge">Stitch</span>
-                  <span class="skill-micro-badge">Git &amp; GitHub</span>
-                  <span class="skill-micro-badge">Postman</span>
-                  <span class="skill-micro-badge">Oracle Cloud (OCI)</span>
+                <span class="tech-name">Git</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/github.svg" alt="GitHub" loading="lazy" />
                 </div>
+                <span class="tech-name">GitHub</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/vscode.svg" alt="Visual Studio Code" loading="lazy" />
+                </div>
+                <span class="tech-name">Visual Studio Code</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/antigravity.svg" alt="Google Antigravity" loading="lazy" />
+                </div>
+                <span class="tech-name">Google Antigravity</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/googleaistudio.svg" alt="Google AI Studio" loading="lazy" />
+                </div>
+                <span class="tech-name">Google AI Studio</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/googleflow.svg" alt="Google Flow" loading="lazy" />
+                </div>
+                <span class="tech-name">Google Flow</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/googlestitch.svg" alt="Google Stitch" loading="lazy" />
+                </div>
+                <span class="tech-name">Google Stitch</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/googlejules.svg" alt="Google Jules" loading="lazy" />
+                </div>
+                <span class="tech-name">Google Jules</span>
+              </div>
+              <div class="tech-card">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/copilot.svg" alt="GitHub Copilot" loading="lazy" />
+                </div>
+                <span class="tech-name">GitHub Copilot</span>
               </div>
             </div>
-
           </div>
 
         </div>

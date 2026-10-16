@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="aiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4285F4"/>
+      <stop offset="50%" stop-color="#9B72CB"/>
+      <stop offset="100%" stop-color="#D96570"/>
+    </linearGradient>
+  </defs>
+  <path d="M64 12 C64 42 74 64 116 64 C74 64 64 86 64 116 C64 86 54 64 12 64 C54 64 64 42 64 12 Z" fill="url(#aiGrad)"/>
+  <circle cx="94" cy="32" r="8" fill="#FBBC05"/>
+</svg>

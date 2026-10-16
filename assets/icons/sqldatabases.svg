@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="dbGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#336791"/>
+      <stop offset="100%" stop-color="#264d6e"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="64" cy="24" rx="46" ry="16" fill="#336791"/>
+  <path d="M18 24v24c0 8.8 20.6 16 46 16s46-7.2 46-16V24" fill="none" stroke="#336791" stroke-width="6"/>
+  <path d="M18 48v24c0 8.8 20.6 16 46 16s46-7.2 46-16V48" fill="none" stroke="#336791" stroke-width="6"/>
+  <path d="M18 72v24c0 8.8 20.6 16 46 16s46-7.2 46-16V72" fill="none" stroke="#336791" stroke-width="6"/>
+  <circle cx="88" cy="88" r="26" fill="#0A0C14" stroke="#FF5A1F" stroke-width="5"/>
+  <path d="M80 88h16M88 80v16" stroke="#FF5A1F" stroke-width="5" stroke-linecap="round"/>
+</svg>

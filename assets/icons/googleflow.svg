@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4285F4"/>
+      <stop offset="50%" stop-color="#00C9A7"/>
+      <stop offset="100%" stop-color="#34A853"/>
+    </linearGradient>
+  </defs>
+  <path d="M20 74 C36 40, 56 40, 72 74 C88 108, 108 108, 116 80" fill="none" stroke="url(#flowGrad)" stroke-width="12" stroke-linecap="round"/>
+  <path d="M12 50 C28 16, 48 16, 64 50 C80 84, 100 84, 108 56" fill="none" stroke="rgba(66, 133, 244, 0.4)" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="20" cy="74" r="7" fill="#4285F4"/>
+  <circle cx="72" cy="74" r="7" fill="#00C9A7"/>
+  <circle cx="116" cy="80" r="7" fill="#34A853"/>
+</svg>
