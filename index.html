@@ -413,15 +413,20 @@
     }
 
     .brands-strip {
-      background: transparent;
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 2.2rem 1rem;
+      background: rgba(14, 20, 32, 0.42);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 1.8rem 2.2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 2rem;
+      box-shadow: 
+        0 14px 35px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
     }
 
     .brands-heading {
@@ -1639,6 +1644,65 @@
         justify-content: space-between;
         font-size: 0.86rem;
         padding: 0.5rem 0.6rem 0.5rem 1rem;
+      }
+    }
+
+    /* ========================================================
+       TRANSPARENT GLASS BACKGROUND FOR EACH SECTION
+       ======================================================== */
+    .behind-designs-section,
+    .workflow-section,
+    .palette-section,
+    .scale-section {
+      background: rgba(14, 20, 32, 0.42);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 36px;
+      margin: 4.5rem auto;
+      max-width: 1280px;
+      padding: 6.5rem 0;
+      position: relative;
+      box-shadow: 
+        0 24px 60px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+    }
+
+    /* Subtle ambient glass top-edge sheen */
+    .behind-designs-section::after,
+    .workflow-section::after,
+    .palette-section::after,
+    .scale-section::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+      pointer-events: none;
+    }
+
+    @media (max-width: 1320px) {
+      .behind-designs-section,
+      .workflow-section,
+      .palette-section,
+      .scale-section {
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+        border-radius: 28px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .behind-designs-section,
+      .workflow-section,
+      .palette-section,
+      .scale-section {
+        margin: 2.5rem 0.8rem;
+        padding: 4rem 0 3.2rem 0;
+        border-radius: 22px;
       }
     }
 
