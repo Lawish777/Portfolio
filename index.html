@@ -180,21 +180,59 @@
     .social-icon-btn {
       width: 40px;
       height: 40px;
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.22);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #fff;
       text-decoration: none;
-      transition: all 0.25s ease;
-      background: transparent;
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      background: radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.15) 0%, rgba(14, 20, 32, 0.7) 70%, rgba(8, 12, 20, 0.9) 100%);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      position: relative;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
     }
 
-    .social-icon-btn:hover {
-      border-color: #fff;
-      transform: translateY(-2px);
-      background: rgba(255, 255, 255, 0.1);
+    .social-icon-btn.github-btn {
+      background: radial-gradient(circle at 25% 25%, rgba(168, 85, 247, 0.45) 0%, rgba(14, 20, 32, 0.75) 65%, rgba(8, 12, 20, 0.9) 100%);
+      border-color: rgba(168, 85, 247, 0.35);
+      box-shadow: 
+        0 4px 14px rgba(0, 0, 0, 0.45),
+        0 0 16px rgba(168, 85, 247, 0.25),
+        inset 5px 5px 10px rgba(168, 85, 247, 0.3);
+    }
+
+    .social-icon-btn.github-btn:hover {
+      border-color: #c084fc;
+      transform: translateY(-2px) scale(1.08);
+      background: radial-gradient(circle at 30% 30%, rgba(168, 85, 247, 0.8) 0%, rgba(24, 18, 46, 0.85) 60%, rgba(12, 10, 26, 0.95) 100%);
+      box-shadow: 
+        0 0 22px rgba(168, 85, 247, 0.7),
+        0 0 40px rgba(168, 85, 247, 0.35),
+        inset 0 0 12px rgba(168, 85, 247, 0.35),
+        inset 8px 8px 14px rgba(168, 85, 247, 0.5);
+    }
+
+    .social-icon-btn.linkedin-btn {
+      background: radial-gradient(circle at 25% 25%, rgba(10, 102, 194, 0.48) 0%, rgba(14, 24, 38, 0.75) 65%, rgba(8, 12, 20, 0.9) 100%);
+      border-color: rgba(56, 189, 248, 0.35);
+      box-shadow: 
+        0 4px 14px rgba(0, 0, 0, 0.45),
+        0 0 16px rgba(10, 102, 194, 0.25),
+        inset 5px 5px 10px rgba(56, 189, 248, 0.3);
+    }
+
+    .social-icon-btn.linkedin-btn:hover {
+      border-color: #38bdf8;
+      transform: translateY(-2px) scale(1.08);
+      background: radial-gradient(circle at 30% 30%, rgba(10, 102, 194, 0.85) 0%, rgba(14, 34, 58, 0.85) 60%, rgba(8, 18, 34, 0.95) 100%);
+      box-shadow: 
+        0 0 22px rgba(56, 189, 248, 0.7),
+        0 0 40px rgba(10, 102, 194, 0.4),
+        inset 0 0 12px rgba(56, 189, 248, 0.35),
+        inset 8px 8px 14px rgba(56, 189, 248, 0.5);
     }
 
     .social-icon-btn svg {
@@ -891,10 +929,12 @@
     }
 
     .tech-card {
-      background: rgba(14, 22, 36, 0.45);
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      /* Dark translucent pill with permanent half-side colored neon aura from the left */
+      background: 
+        radial-gradient(circle at 18% 50%, var(--glow-aura, rgba(56, 189, 248, 0.4)) 0%, rgba(14, 22, 36, 0.7) 65%, rgba(10, 14, 24, 0.8) 100%);
+      border: 1px solid var(--border-color, rgba(56, 189, 248, 0.28));
       border-radius: 9999px;
-      padding: 0.52rem 1.25rem 0.52rem 0.65rem;
+      padding: 0.52rem 1.3rem 0.52rem 0.65rem;
       display: inline-flex;
       flex-direction: row;
       align-items: center;
@@ -907,55 +947,83 @@
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       box-shadow: 
-        0 4px 16px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        0 4px 18px rgba(0, 0, 0, 0.55),
+        0 0 16px var(--glow-aura, rgba(56, 189, 248, 0.2)),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        inset 8px 0 14px var(--glow-aura, rgba(56, 189, 248, 0.25));
     }
 
-    /* Ambient glow & border highlighting on each card */
+    /* Ambient glow & border highlighting on each card on hover */
     .tech-card:hover {
       transform: translateY(-3px) scale(1.03);
-      background: rgba(18, 30, 48, 0.7);
+      background: 
+        radial-gradient(circle at 25% 50%, var(--glow-aura-hover, rgba(56, 189, 248, 0.65)) 0%, rgba(18, 30, 50, 0.85) 60%, rgba(12, 18, 30, 0.95) 100%);
       box-shadow: 
-        0 0 22px var(--glow-color, rgba(56, 189, 248, 0.55)),
-        0 0 42px var(--glow-color, rgba(56, 189, 248, 0.25)),
-        inset 0 0 14px var(--glow-color, rgba(56, 189, 248, 0.22));
-      border-color: var(--glow-border, rgba(56, 189, 248, 0.85));
+        0 0 24px var(--glow-color, rgba(56, 189, 248, 0.65)),
+        0 0 45px var(--glow-color, rgba(56, 189, 248, 0.35)),
+        inset 0 0 14px var(--glow-color, rgba(56, 189, 248, 0.25)),
+        inset 12px 0 20px var(--glow-color, rgba(56, 189, 248, 0.45));
+      border-color: var(--glow-border, rgba(56, 189, 248, 0.9));
     }
 
     /* Default cyan-blue glow */
     .tech-card {
-      --glow-color: rgba(56, 189, 248, 0.55);
-      --glow-border: rgba(56, 189, 248, 0.85);
+      --glow-aura: rgba(56, 189, 248, 0.32);
+      --glow-aura-hover: rgba(56, 189, 248, 0.65);
+      --glow-color: rgba(56, 189, 248, 0.6);
+      --glow-border: #38bdf8;
+      --border-color: rgba(56, 189, 248, 0.32);
     }
 
-    /* Specific category-accurate neon colors from the reference */
+    /* Color definitions with half-side neon radial auras matching reference image */
     .tech-card[data-glow="cyan"] {
-      --glow-color: rgba(6, 182, 212, 0.6);
+      --glow-aura: rgba(6, 182, 212, 0.38);
+      --glow-aura-hover: rgba(6, 182, 212, 0.75);
+      --glow-color: rgba(6, 182, 212, 0.65);
       --glow-border: #22d3ee;
+      --border-color: rgba(6, 182, 212, 0.35);
     }
     .tech-card[data-glow="blue"] {
-      --glow-color: rgba(59, 130, 246, 0.6);
+      --glow-aura: rgba(59, 130, 246, 0.38);
+      --glow-aura-hover: rgba(59, 130, 246, 0.75);
+      --glow-color: rgba(59, 130, 246, 0.65);
       --glow-border: #60a5fa;
+      --border-color: rgba(59, 130, 246, 0.35);
     }
     .tech-card[data-glow="orange"] {
-      --glow-color: rgba(255, 90, 31, 0.65);
+      --glow-aura: rgba(255, 90, 31, 0.38);
+      --glow-aura-hover: rgba(255, 90, 31, 0.78);
+      --glow-color: rgba(255, 90, 31, 0.7);
       --glow-border: #FF5A1F;
+      --border-color: rgba(255, 90, 31, 0.38);
     }
     .tech-card[data-glow="yellow"] {
-      --glow-color: rgba(234, 179, 8, 0.6);
+      --glow-aura: rgba(234, 179, 8, 0.38);
+      --glow-aura-hover: rgba(234, 179, 8, 0.75);
+      --glow-color: rgba(234, 179, 8, 0.65);
       --glow-border: #facc15;
+      --border-color: rgba(234, 179, 8, 0.35);
     }
     .tech-card[data-glow="red"] {
-      --glow-color: rgba(239, 68, 68, 0.6);
+      --glow-aura: rgba(239, 68, 68, 0.38);
+      --glow-aura-hover: rgba(239, 68, 68, 0.75);
+      --glow-color: rgba(239, 68, 68, 0.65);
       --glow-border: #f87171;
+      --border-color: rgba(239, 68, 68, 0.35);
     }
     .tech-card[data-glow="purple"] {
-      --glow-color: rgba(168, 85, 247, 0.6);
+      --glow-aura: rgba(168, 85, 247, 0.38);
+      --glow-aura-hover: rgba(168, 85, 247, 0.75);
+      --glow-color: rgba(168, 85, 247, 0.65);
       --glow-border: #c084fc;
+      --border-color: rgba(168, 85, 247, 0.35);
     }
     .tech-card[data-glow="green"] {
-      --glow-color: rgba(34, 197, 94, 0.6);
+      --glow-aura: rgba(34, 197, 94, 0.38);
+      --glow-aura-hover: rgba(34, 197, 94, 0.75);
+      --glow-color: rgba(34, 197, 94, 0.65);
       --glow-border: #4ade80;
+      --border-color: rgba(34, 197, 94, 0.35);
     }
 
     .tech-icon-wrap {
@@ -1624,10 +1692,10 @@
     </ul>
     <div class="mobile-drawer-footer">
       <div class="mobile-drawer-socials">
-        <a href="https://github.com/Lawish777" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GitHub Profile">
+        <a href="https://github.com/Lawish777" target="_blank" rel="noopener noreferrer" class="social-icon-btn github-btn" aria-label="GitHub Profile">
           <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         </a>
-        <a href="https://www.linkedin.com/in/lawish-kumar-791391186" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn Profile">
+        <a href="https://www.linkedin.com/in/lawish-kumar-791391186" target="_blank" rel="noopener noreferrer" class="social-icon-btn linkedin-btn" aria-label="LinkedIn Profile">
           <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
         </a>
       </div>
@@ -1658,10 +1726,10 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
         <div class="nav-actions">
-          <a href="https://github.com/Lawish777" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GitHub Profile">
+          <a href="https://github.com/Lawish777" target="_blank" rel="noopener noreferrer" class="social-icon-btn github-btn" aria-label="GitHub Profile">
             <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           </a>
-          <a href="https://www.linkedin.com/in/lawish-kumar-791391186" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="LinkedIn Profile">
+          <a href="https://www.linkedin.com/in/lawish-kumar-791391186" target="_blank" rel="noopener noreferrer" class="social-icon-btn linkedin-btn" aria-label="LinkedIn Profile">
             <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
           </a>
           <a href="#contact" class="nav-btn">
