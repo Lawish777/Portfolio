@@ -207,31 +207,52 @@
       display: inline-flex;
       align-items: center;
       gap: 0.65rem;
-      background: #FFFFFF;
-      color: #0E0E10;
-      padding: 0.55rem 0.65rem 0.55rem 1.3rem;
+      background: rgba(14, 26, 36, 0.65);
+      color: #FFFFFF;
+      padding: 0.52rem 0.65rem 0.52rem 1.35rem;
       border-radius: 9999px;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       font-weight: 600;
       text-decoration: none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 1px solid rgba(56, 189, 248, 0.38);
+      box-shadow: 
+        0 0 16px rgba(56, 189, 248, 0.28),
+        0 0 32px rgba(6, 182, 212, 0.15),
+        inset 0 0 12px rgba(56, 189, 248, 0.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
     }
 
     .nav-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px) scale(1.02);
+      border-color: rgba(56, 189, 248, 0.85);
+      background: rgba(14, 38, 54, 0.85);
+      box-shadow: 
+        0 0 24px rgba(56, 189, 248, 0.65),
+        0 0 48px rgba(6, 182, 212, 0.35),
+        inset 0 0 18px rgba(56, 189, 248, 0.35);
+      color: #FFFFFF;
     }
 
     .nav-btn .arrow-icon {
       width: 26px;
       height: 26px;
-      background: var(--accent-orange);
+      background: linear-gradient(135deg, #06B6D4, #3B82F6);
       color: #fff;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 0.85rem;
+      box-shadow: 0 0 10px rgba(6, 182, 212, 0.6);
+      transition: transform 0.25s ease;
+    }
+
+    .nav-btn:hover .arrow-icon {
+      transform: translateX(2px);
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.9);
     }
 
     /* HERO SECTION */
@@ -862,59 +883,105 @@
       letter-spacing: 0.04em;
     }
 
-    /* Grid of Technology Cards - Transparent Floating Neon Glow Pills */
+    /* Grid of Technology Cards - Glowing Ambient Neon Pills */
     .tech-cards-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem 1.2rem;
+      gap: 0.95rem 1.15rem;
     }
 
     .tech-card {
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(14, 22, 36, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: 9999px;
-      padding: 0.55rem 1.2rem 0.55rem 0.75rem;
+      padding: 0.52rem 1.25rem 0.52rem 0.65rem;
       display: inline-flex;
       flex-direction: row;
       align-items: center;
       justify-content: flex-start;
       gap: 0.75rem;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
       position: relative;
       user-select: none;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
     }
 
-    /* Neon glow hover matching website orange accent */
+    /* Ambient glow & border highlighting on each card */
     .tech-card:hover {
-      background: transparent;
-      border-color: var(--accent-orange);
       transform: translateY(-3px) scale(1.03);
+      background: rgba(18, 30, 48, 0.7);
       box-shadow: 
-        0 0 18px rgba(255, 90, 31, 0.6),
-        0 0 35px rgba(255, 90, 31, 0.3),
-        inset 0 0 12px rgba(255, 90, 31, 0.2);
+        0 0 22px var(--glow-color, rgba(56, 189, 248, 0.55)),
+        0 0 42px var(--glow-color, rgba(56, 189, 248, 0.25)),
+        inset 0 0 14px var(--glow-color, rgba(56, 189, 248, 0.22));
+      border-color: var(--glow-border, rgba(56, 189, 248, 0.85));
+    }
+
+    /* Default cyan-blue glow */
+    .tech-card {
+      --glow-color: rgba(56, 189, 248, 0.55);
+      --glow-border: rgba(56, 189, 248, 0.85);
+    }
+
+    /* Specific category-accurate neon colors from the reference */
+    .tech-card[data-glow="cyan"] {
+      --glow-color: rgba(6, 182, 212, 0.6);
+      --glow-border: #22d3ee;
+    }
+    .tech-card[data-glow="blue"] {
+      --glow-color: rgba(59, 130, 246, 0.6);
+      --glow-border: #60a5fa;
+    }
+    .tech-card[data-glow="orange"] {
+      --glow-color: rgba(255, 90, 31, 0.65);
+      --glow-border: #FF5A1F;
+    }
+    .tech-card[data-glow="yellow"] {
+      --glow-color: rgba(234, 179, 8, 0.6);
+      --glow-border: #facc15;
+    }
+    .tech-card[data-glow="red"] {
+      --glow-color: rgba(239, 68, 68, 0.6);
+      --glow-border: #f87171;
+    }
+    .tech-card[data-glow="purple"] {
+      --glow-color: rgba(168, 85, 247, 0.6);
+      --glow-border: #c084fc;
+    }
+    .tech-card[data-glow="green"] {
+      --glow-color: rgba(34, 197, 94, 0.6);
+      --glow-border: #4ade80;
     }
 
     .tech-icon-wrap {
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), filter 0.28s ease, box-shadow 0.28s ease;
       position: relative;
     }
 
     .tech-card:hover .tech-icon-wrap {
-      transform: scale(1.2);
-      filter: drop-shadow(0 0 8px rgba(255, 90, 31, 0.8));
+      transform: scale(1.18);
+      filter: drop-shadow(0 0 10px var(--glow-color, rgba(56, 189, 248, 0.8)));
+      box-shadow: 0 0 14px var(--glow-color, rgba(56, 189, 248, 0.5));
+      border-color: rgba(255, 255, 255, 0.3);
     }
 
     .tech-icon-wrap img,
     .tech-icon-wrap svg {
-      width: 24px;
-      height: 24px;
+      width: 20px;
+      height: 20px;
       object-fit: contain;
       display: block;
     }
@@ -922,16 +989,16 @@
     .tech-name {
       font-size: 0.95rem;
       font-weight: 600;
-      color: #FFFFFF;
+      color: rgba(255, 255, 255, 0.92);
       letter-spacing: -0.01em;
       line-height: 1.2;
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
-      transition: color 0.2s ease, text-shadow 0.2s ease;
+      transition: color 0.25s ease, text-shadow 0.25s ease;
     }
 
     .tech-card:hover .tech-name {
       color: #FFFFFF;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 0 18px rgba(255, 90, 31, 0.8);
+      text-shadow: 0 0 12px rgba(255, 255, 255, 0.9), 0 0 20px var(--glow-color, rgba(56, 189, 248, 0.7));
     }
 
     /* ========================================================
@@ -1875,43 +1942,43 @@
               <span class="category-count">7 Technologies</span>
             </div>
             <div class="tech-cards-grid">
-              <div class="tech-card">
+              <div class="tech-card" data-glow="blue">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/c.svg" alt="C" loading="lazy" />
                 </div>
                 <span class="tech-name">C</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="cyan">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/cplusplus.svg" alt="C++" loading="lazy" />
                 </div>
                 <span class="tech-name">C++</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="orange">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/java.svg" alt="Java" loading="lazy" />
                 </div>
                 <span class="tech-name">Java</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="yellow">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/javascript.svg" alt="JavaScript" loading="lazy" />
                 </div>
                 <span class="tech-name">JavaScript</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="blue">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/python.svg" alt="Python" loading="lazy" />
                 </div>
                 <span class="tech-name">Python</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="cyan">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/sql.svg" alt="SQL" loading="lazy" />
                 </div>
                 <span class="tech-name">SQL</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="purple">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/dotnetcore.svg" alt=".NET" loading="lazy" />
                 </div>
@@ -1930,43 +1997,43 @@
               <span class="category-count">7 Technologies</span>
             </div>
             <div class="tech-cards-grid">
-              <div class="tech-card">
+              <div class="tech-card" data-glow="orange">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/html5.svg" alt="HTML5" loading="lazy" />
                 </div>
                 <span class="tech-name">HTML5</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="blue">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/css3.svg" alt="CSS3" loading="lazy" />
                 </div>
                 <span class="tech-name">CSS3</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="red">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/angular.svg" alt="Angular" loading="lazy" />
                 </div>
                 <span class="tech-name">Angular</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="cyan">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/react.svg" alt="React" loading="lazy" />
                 </div>
                 <span class="tech-name">React</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="cyan">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/tailwindcss.svg" alt="Tailwind CSS" loading="lazy" />
                 </div>
                 <span class="tech-name">Tailwind CSS</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="purple">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/bootstrap.svg" alt="Bootstrap" loading="lazy" />
                 </div>
                 <span class="tech-name">Bootstrap</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="blue">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/typescript.svg" alt="TypeScript" loading="lazy" />
                 </div>
@@ -1985,19 +2052,19 @@
               <span class="category-count">3 Technologies</span>
             </div>
             <div class="tech-cards-grid">
-              <div class="tech-card">
+              <div class="tech-card" data-glow="green">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/nodejs.svg" alt="Node.js" loading="lazy" />
                 </div>
                 <span class="tech-name">Node.js</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="orange">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/express.svg" alt="Express.js" loading="lazy" />
                 </div>
                 <span class="tech-name">Express.js</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="cyan">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/restapi.svg" alt="REST APIs" loading="lazy" />
                 </div>
@@ -2016,13 +2083,13 @@
               <span class="category-count">2 Technologies</span>
             </div>
             <div class="tech-cards-grid">
-              <div class="tech-card">
+              <div class="tech-card" data-glow="green">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/mongodb.svg" alt="MongoDB" loading="lazy" />
                 </div>
                 <span class="tech-name">MongoDB</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="blue">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/sqldatabases.svg" alt="SQL Databases" loading="lazy" />
                 </div>
@@ -2041,55 +2108,55 @@
               <span class="category-count">9 Technologies</span>
             </div>
             <div class="tech-cards-grid">
-              <div class="tech-card">
+              <div class="tech-card" data-glow="orange">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/git.svg" alt="Git" loading="lazy" />
                 </div>
                 <span class="tech-name">Git</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="cyan">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/github.svg" alt="GitHub" loading="lazy" />
                 </div>
                 <span class="tech-name">GitHub</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="blue">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/vscode.svg" alt="Visual Studio Code" loading="lazy" />
                 </div>
                 <span class="tech-name">Visual Studio Code</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="cyan">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/antigravity.svg" alt="Google Antigravity" loading="lazy" />
                 </div>
                 <span class="tech-name">Google Antigravity</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="purple">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/googleaistudio.svg" alt="Google AI Studio" loading="lazy" />
                 </div>
                 <span class="tech-name">Google AI Studio</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="cyan">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/googleflow.svg" alt="Google Flow" loading="lazy" />
                 </div>
                 <span class="tech-name">Google Flow</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="orange">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/googlestitch.svg" alt="Google Stitch" loading="lazy" />
                 </div>
                 <span class="tech-name">Google Stitch</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="green">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/googlejules.svg" alt="Google Jules" loading="lazy" />
                 </div>
                 <span class="tech-name">Google Jules</span>
               </div>
-              <div class="tech-card">
+              <div class="tech-card" data-glow="purple">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/copilot.svg" alt="GitHub Copilot" loading="lazy" />
                 </div>

@@ -219,31 +219,52 @@
       display: inline-flex;
       align-items: center;
       gap: 0.65rem;
-      background: #FFFFFF;
-      color: #0E0E10;
-      padding: 0.55rem 0.65rem 0.55rem 1.3rem;
+      background: rgba(14, 26, 36, 0.65);
+      color: #FFFFFF;
+      padding: 0.52rem 0.65rem 0.52rem 1.35rem;
       border-radius: 9999px;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       font-weight: 600;
       text-decoration: none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 1px solid rgba(56, 189, 248, 0.38);
+      box-shadow: 
+        0 0 16px rgba(56, 189, 248, 0.28),
+        0 0 32px rgba(6, 182, 212, 0.15),
+        inset 0 0 12px rgba(56, 189, 248, 0.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
     }
 
     .nav-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px) scale(1.02);
+      border-color: rgba(56, 189, 248, 0.85);
+      background: rgba(14, 38, 54, 0.85);
+      box-shadow: 
+        0 0 24px rgba(56, 189, 248, 0.65),
+        0 0 48px rgba(6, 182, 212, 0.35),
+        inset 0 0 18px rgba(56, 189, 248, 0.35);
+      color: #FFFFFF;
     }
 
     .nav-btn .arrow-icon {
       width: 26px;
       height: 26px;
-      background: var(--accent-orange);
+      background: linear-gradient(135deg, #06B6D4, #3B82F6);
       color: #fff;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 0.85rem;
+      box-shadow: 0 0 10px rgba(6, 182, 212, 0.6);
+      transition: transform 0.25s ease;
+    }
+
+    .nav-btn:hover .arrow-icon {
+      transform: translateX(2px);
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.9);
     }
 
     /* ========================================================
