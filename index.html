@@ -859,7 +859,7 @@
       margin-bottom: 3.5rem;
     }
 
-    /* Category Layout - Individual Glass Panels */
+    /* Category Layout - High-Contrast Dark Glass Panels */
     .tech-categories-container {
       display: flex;
       flex-direction: column;
@@ -868,24 +868,24 @@
     }
 
     .tech-category-block {
-      background: rgba(14, 20, 32, 0.45);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(10, 14, 24, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: 24px;
-      padding: 1.6rem 2rem;
+      padding: 1.75rem 2.2rem;
       position: relative;
       box-shadow: 
-        0 14px 35px rgba(0, 0, 0, 0.35),
-        inset 0 1px 0 rgba(255, 255, 255, 0.12);
-      transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        0 18px 40px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     .tech-category-block:hover {
-      border-color: rgba(255, 255, 255, 0.22);
+      border-color: rgba(255, 255, 255, 0.26);
       box-shadow: 
-        0 20px 45px rgba(0, 0, 0, 0.45),
-        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        0 24px 50px rgba(0, 0, 0, 0.75),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
     }
 
     .tech-category-header {
@@ -894,7 +894,7 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 1rem;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.35rem;
     }
 
     .category-title-group {
@@ -912,7 +912,7 @@
     }
 
     .category-title {
-      font-size: 1.15rem;
+      font-size: 1.18rem;
       font-weight: 700;
       color: #FFFFFF;
       letter-spacing: -0.015em;
@@ -924,52 +924,52 @@
       font-weight: 700;
       padding: 0.25rem 0.75rem;
       border-radius: 9999px;
-      background: transparent;
-      color: var(--text-dim);
-      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.14);
       letter-spacing: 0.04em;
     }
 
-    /* Grid of Technology Cards - Glowing Ambient Neon Pills */
+    /* Grid of Technology Cards - Sharper Badge Styling */
     .tech-cards-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.95rem 1.15rem;
+      gap: 0.85rem 1rem;
     }
 
     .tech-card {
-      /* Half-side colored neon aura from the left, completely transparent on the right */
+      /* Sharper badge with clean solid/subdued radial tone and crisp border */
       background: 
-        radial-gradient(circle at 16% 50%, var(--glow-aura, rgba(56, 189, 248, 0.42)) 0%, rgba(56, 189, 248, 0.08) 42%, transparent 72%);
-      border: 1px solid var(--border-color, rgba(56, 189, 248, 0.35));
+        radial-gradient(circle at 18% 50%, var(--glow-aura, rgba(56, 189, 248, 0.28)) 0%, rgba(18, 24, 38, 0.7) 48%, rgba(14, 18, 30, 0.85) 100%);
+      border: 1px solid var(--border-color, rgba(56, 189, 248, 0.4));
       border-radius: 9999px;
-      padding: 0.52rem 1.3rem 0.52rem 0.65rem;
+      padding: 0.48rem 1.15rem 0.48rem 0.65rem;
       display: inline-flex;
       flex-direction: row;
       align-items: center;
       justify-content: flex-start;
-      gap: 0.75rem;
-      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      gap: 0.7rem;
+      transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
       position: relative;
       user-select: none;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
       box-shadow: 
-        0 0 16px var(--glow-aura, rgba(56, 189, 248, 0.25)),
-        inset 10px 0 16px var(--glow-aura, rgba(56, 189, 248, 0.35));
+        0 2px 8px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        inset 6px 0 10px var(--glow-aura, rgba(56, 189, 248, 0.18));
     }
 
-    /* Ambient glow & border highlighting on each card on hover */
+    /* Crisp border & balanced hover illumination */
     .tech-card:hover {
-      transform: translateY(-3px) scale(1.03);
+      transform: translateY(-2px);
       background: 
-        radial-gradient(circle at 20% 50%, var(--glow-aura-hover, rgba(56, 189, 248, 0.75)) 0%, rgba(56, 189, 248, 0.18) 48%, transparent 78%);
+        radial-gradient(circle at 22% 50%, var(--glow-aura-hover, rgba(56, 189, 248, 0.5)) 0%, rgba(22, 30, 48, 0.9) 55%, rgba(16, 22, 36, 0.95) 100%);
       box-shadow: 
-        0 0 24px var(--glow-color, rgba(56, 189, 248, 0.65)),
-        0 0 45px var(--glow-color, rgba(56, 189, 248, 0.35)),
-        inset 14px 0 22px var(--glow-color, rgba(56, 189, 248, 0.55));
-      border-color: var(--glow-border, rgba(56, 189, 248, 0.9));
+        0 4px 16px rgba(0, 0, 0, 0.5),
+        0 0 18px var(--glow-color, rgba(56, 189, 248, 0.35)),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 8px 0 14px var(--glow-color, rgba(56, 189, 248, 0.35));
+      border-color: var(--glow-border, rgba(56, 189, 248, 0.95));
     }
 
     /* Default cyan-blue glow */
@@ -2013,9 +2013,9 @@
             <div class="tech-category-header">
               <div class="category-title-group">
                 <span class="category-badge-dot"></span>
-                <h3 class="category-title">1. Programming Languages &amp; Technologies</h3>
+                <h3 class="category-title">1. Programming Languages &amp; Core Technologies</h3>
               </div>
-              <span class="category-count">7 Technologies</span>
+              <span class="category-count">7 Languages</span>
             </div>
             <div class="tech-cards-grid">
               <div class="tech-card" data-glow="blue">
@@ -2044,15 +2044,15 @@
               </div>
               <div class="tech-card" data-glow="blue">
                 <div class="tech-icon-wrap">
+                  <img src="assets/icons/typescript.svg" alt="TypeScript" loading="lazy" />
+                </div>
+                <span class="tech-name">TypeScript</span>
+              </div>
+              <div class="tech-card" data-glow="blue">
+                <div class="tech-icon-wrap">
                   <img src="assets/icons/python.svg" alt="Python" loading="lazy" />
                 </div>
                 <span class="tech-name">Python</span>
-              </div>
-              <div class="tech-card" data-glow="cyan">
-                <div class="tech-icon-wrap">
-                  <img src="assets/icons/sql.svg" alt="SQL" loading="lazy" />
-                </div>
-                <span class="tech-name">SQL</span>
               </div>
               <div class="tech-card" data-glow="purple">
                 <div class="tech-icon-wrap">
@@ -2070,7 +2070,7 @@
                 <span class="category-badge-dot" style="background: #3D7EFF; box-shadow: 0 0 10px #3D7EFF;"></span>
                 <h3 class="category-title">2. Frontend Development</h3>
               </div>
-              <span class="category-count">7 Technologies</span>
+              <span class="category-count">6 Frameworks</span>
             </div>
             <div class="tech-cards-grid">
               <div class="tech-card" data-glow="orange">
@@ -2109,21 +2109,15 @@
                 </div>
                 <span class="tech-name">Bootstrap</span>
               </div>
-              <div class="tech-card" data-glow="blue">
-                <div class="tech-icon-wrap">
-                  <img src="assets/icons/typescript.svg" alt="TypeScript" loading="lazy" />
-                </div>
-                <span class="tech-name">TypeScript</span>
-              </div>
             </div>
           </div>
 
-          <!-- Category 3: Backend Development -->
+          <!-- Category 3: Backend Development & APIs -->
           <div class="tech-category-block">
             <div class="tech-category-header">
               <div class="category-title-group">
                 <span class="category-badge-dot" style="background: #34D399; box-shadow: 0 0 10px #34D399;"></span>
-                <h3 class="category-title">3. Backend Development</h3>
+                <h3 class="category-title">3. Backend Development &amp; APIs</h3>
               </div>
               <span class="category-count">3 Technologies</span>
             </div>
@@ -2149,16 +2143,22 @@
             </div>
           </div>
 
-          <!-- Category 4: Databases -->
+          <!-- Category 4: Databases & Query Languages -->
           <div class="tech-category-block">
             <div class="tech-category-header">
               <div class="category-title-group">
                 <span class="category-badge-dot" style="background: #10B981; box-shadow: 0 0 10px #10B981;"></span>
-                <h3 class="category-title">4. Databases</h3>
+                <h3 class="category-title">4. Databases &amp; Query Languages</h3>
               </div>
-              <span class="category-count">2 Technologies</span>
+              <span class="category-count">3 Technologies</span>
             </div>
             <div class="tech-cards-grid">
+              <div class="tech-card" data-glow="cyan">
+                <div class="tech-icon-wrap">
+                  <img src="assets/icons/sql.svg" alt="SQL" loading="lazy" />
+                </div>
+                <span class="tech-name">SQL</span>
+              </div>
               <div class="tech-card" data-glow="green">
                 <div class="tech-icon-wrap">
                   <img src="assets/icons/mongodb.svg" alt="MongoDB" loading="lazy" />
@@ -2181,7 +2181,7 @@
                 <span class="category-badge-dot" style="background: #A855F7; box-shadow: 0 0 10px #A855F7;"></span>
                 <h3 class="category-title">5. Developer Tools &amp; AI</h3>
               </div>
-              <span class="category-count">9 Technologies</span>
+              <span class="category-count">9 Tools</span>
             </div>
             <div class="tech-cards-grid">
               <div class="tech-card" data-glow="orange">
