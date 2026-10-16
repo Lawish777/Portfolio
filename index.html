@@ -813,37 +813,16 @@
     }
 
     .tech-category-block {
-      background: rgba(18, 22, 34, 0.45);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 24px;
       padding: 2rem 2.2rem;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      transition: border-color 0.3s ease;
       position: relative;
-      overflow: hidden;
-    }
-
-    .tech-category-block::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(255, 90, 31, 0.5), rgba(61, 126, 255, 0.5), transparent);
-      opacity: 0;
-      transition: opacity 0.3s ease;
     }
 
     .tech-category-block:hover {
-      border-color: rgba(255, 255, 255, 0.28);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
-      transform: translateY(-2px);
-    }
-
-    .tech-category-block:hover::before {
-      opacity: 1;
+      border-color: rgba(255, 255, 255, 0.22);
     }
 
     .tech-category-header {
@@ -883,7 +862,7 @@
       font-weight: 700;
       padding: 0.25rem 0.75rem;
       border-radius: 9999px;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.06);
       color: var(--text-muted);
       border: 1px solid rgba(255, 255, 255, 0.12);
       letter-spacing: 0.04em;
@@ -893,44 +872,67 @@
     .tech-cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
-      gap: 1.1rem;
+      gap: 1.15rem;
     }
 
     .tech-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.09);
-      border-radius: 16px;
-      padding: 1.15rem 1rem;
+      background: rgba(10, 12, 18, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      padding: 1.25rem 1rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
       gap: 0.75rem;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: default;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
       position: relative;
       user-select: none;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      overflow: hidden;
     }
 
+    /* Subtle neon ambient bottom light */
+    .tech-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), transparent 60%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* Neon glow on hover */
     .tech-card:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 90, 31, 0.55);
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 10px 24px rgba(255, 90, 31, 0.16), 0 6px 12px rgba(0, 0, 0, 0.4);
+      background: rgba(20, 24, 38, 0.85);
+      border-color: #FF5A1F;
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 
+        0 0 20px rgba(255, 90, 31, 0.45),
+        0 0 40px rgba(255, 90, 31, 0.22),
+        0 10px 25px rgba(0, 0, 0, 0.7),
+        inset 0 0 14px rgba(255, 90, 31, 0.15);
     }
 
     .tech-icon-wrap {
-      width: 44px;
-      height: 44px;
+      width: 46px;
+      height: 46px;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: transform 0.25s ease;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+      position: relative;
     }
 
     .tech-card:hover .tech-icon-wrap {
-      transform: scale(1.12);
+      transform: scale(1.15);
+      filter: drop-shadow(0 0 10px rgba(255, 90, 31, 0.75));
     }
 
     .tech-icon-wrap img,
@@ -944,15 +946,16 @@
     .tech-name {
       font-size: 0.92rem;
       font-weight: 600;
-      color: #FFFFFF;
+      color: rgba(255, 255, 255, 0.92);
       letter-spacing: -0.01em;
       line-height: 1.25;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
-      transition: color 0.2s ease;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+      transition: color 0.25s ease, text-shadow 0.25s ease;
     }
 
     .tech-card:hover .tech-name {
       color: #FFFFFF;
+      text-shadow: 0 0 12px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 90, 31, 0.6);
     }
 
     /* ========================================================
