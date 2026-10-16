@@ -859,19 +859,33 @@
       margin-bottom: 3.5rem;
     }
 
-    /* Category Layout */
+    /* Category Layout - Individual Glass Panels */
     .tech-categories-container {
       display: flex;
       flex-direction: column;
-      gap: 3.5rem;
+      gap: 1.8rem;
+      max-width: 960px;
     }
 
     .tech-category-block {
-      background: transparent;
-      border: none;
-      border-top: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 1.8rem 0 0 0;
+      background: rgba(14, 20, 32, 0.45);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 1.6rem 2rem;
       position: relative;
+      box-shadow: 
+        0 14px 35px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tech-category-block:hover {
+      border-color: rgba(255, 255, 255, 0.22);
+      box-shadow: 
+        0 20px 45px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
     }
 
     .tech-category-header {
@@ -880,7 +894,7 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 1rem;
-      margin-bottom: 1.6rem;
+      margin-bottom: 1.25rem;
     }
 
     .category-title-group {
@@ -898,7 +912,7 @@
     }
 
     .category-title {
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       font-weight: 700;
       color: #FFFFFF;
       letter-spacing: -0.015em;
@@ -1642,52 +1656,7 @@
       }
     }
 
-    /* ========================================================
-       TRANSPARENT GLASS BACKGROUND (SKILLS SECTION ONLY)
-       ======================================================== */
-    .palette-section {
-      background: rgba(14, 20, 32, 0.42);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 36px;
-      margin: 4.5rem auto;
-      max-width: 1280px;
-      padding: 6rem 0;
-      position: relative;
-      box-shadow: 
-        0 24px 60px rgba(0, 0, 0, 0.45),
-        inset 0 1px 0 rgba(255, 255, 255, 0.12);
-      overflow: hidden;
-    }
 
-    /* Subtle ambient glass top-edge sheen on skills section */
-    .palette-section::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 10%;
-      right: 10%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
-      pointer-events: none;
-    }
-
-    @media (max-width: 1320px) {
-      .palette-section {
-        margin-left: 1.5rem;
-        margin-right: 1.5rem;
-        border-radius: 28px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .palette-section {
-        margin: 2.5rem 0.8rem;
-        padding: 4rem 0 3.2rem 0;
-        border-radius: 22px;
-      }
-    }
 
     @media (max-width: 480px) {
       .hero-pillars-grid {
